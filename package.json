@@ -1,0 +1,15 @@
+{
+  "name": "kino-crawler",
+  "version": "0.0.1",
+  "description": "Kinoprogramm für gegebene Kinos auf Kino.de abfragen",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^1.4.0"
+  }
+}
