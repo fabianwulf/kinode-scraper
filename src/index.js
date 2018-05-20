@@ -1,8 +1,12 @@
 'use strict';
 
+const fs = require('fs');
+const mkdir = require('mkdirp');
 const puppeteer = require('puppeteer');
+const config = require('./config');
 
-const config = require('./config').cinemas;
+const PAGE_LOAD_TIMEOUT = 60000;
+
 const todaysMoviesSelector = ".cinema-movies.active .cinema-movie";
 const movieTitleSelector = ".card-link";
 const movieTimesSelector = ".schedule-time a";
@@ -10,8 +14,12 @@ const movieTimesSelector = ".schedule-time a";
 async function fetchMoviesAtCinema(browser, cinema, scheduleURL) {
   return new Promise(async (resolve, reject) => {
     const page = await browser.newPage();
-    await page.goto(scheduleURL);
-
+    try {
+      await page.goto(scheduleURL, {timeout: PAGE_LOAD_TIMEOUT});
+    } catch(err) {
+      console.log('Error happened: ' + err.message);
+    }
+    
     await page.waitForSelector(todaysMoviesSelector);
     const $movieElements = await page.$$(todaysMoviesSelector);
     let infos = {
@@ -22,10 +30,10 @@ async function fetchMoviesAtCinema(browser, cinema, scheduleURL) {
 
     infos.movies = await Promise.all(await $movieElements.map(async ($elem) => {
       const title = await $elem.$eval(movieTitleSelector, (elem) => elem.innerText);
-      const $times = await $elem.$$(movieTimesSelector)
+      const $times = await $elem.$$(movieTimesSelector);
       const times = await Promise.all(await $times.map(async (timeHandle) => {
-        const html = await page.evaluate(time => time.innerText, timeHandle);
-        return html;
+        const time = await page.evaluate(time => time.innerText, timeHandle);
+        return time;
       }));
       return { title, times };
     }));
@@ -33,13 +41,21 @@ async function fetchMoviesAtCinema(browser, cinema, scheduleURL) {
   });
 }
 
+function writeToFile(path, data) {
+  mkdir.sync(path.substring(0,path.lastIndexOf('/')));
+  fs.writeFile(config.outFile, JSON.stringify(data), 'utf-8', (err) => {
+    if (err) throw err;
+    console.log(`Data written to ${config.outFile}.`);
+  });
+}
+
 (async () => {
   const browser = await puppeteer.launch();
-  const cinemas = Object.keys(config);
+  const cinemas = Object.keys(config.cinemas);
   const data = await Promise.all(await cinemas.map(async (cinema) => {
-    const todaysProgramme = await fetchMoviesAtCinema(browser, cinema, config[cinema]);
+    const todaysProgramme = await fetchMoviesAtCinema(browser, cinema, config.cinemas[cinema]);
     return todaysProgramme;
   }));
-  console.log(JSON.stringify(data));
   await browser.close();
+  writeToFile(config.outFile, data);
 })();
