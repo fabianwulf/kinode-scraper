@@ -1,23 +1,27 @@
 {
   "name": "kinode-scraper",
-  "version": "0.2.0",
-  "description": "Kinoprogramm für gegebene Kinos auf Kino.de abfragen",
+  "version": "0.2.1",
+  "description": "Get daily schedule for a list of cinemas on kino.de",
   "bin": {
     "kinode-scraper": "./bin/kinode-scraper"
   },
   "main": "./src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage"
   },
   "author": "Fabian Wulf <mail@fabianwulf.de>",
   "license": "MIT",
   "dependencies": {
-    "mkdirp": "0.5.1",
-    "puppeteer": "1.4.0",
-    "yargs": "11.0.0"
+    "mkdirp": "^0.5.1",
+    "puppeteer": "^1.4.0",
+    "yargs": "^11.0.0"
   },
   "repository": {
     "type": "git",
     "url": "ssh://git@github.com/fabianwulf/kinode-scraper.git"
+  },
+  "devDependencies": {
+    "jest": "^22.4.4",
+    "rimraf": "^2.6.2"
   }
 }
