@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+const kinoDeScraper = require('../lib');
+
+var argv = require('yargs')
+  .option('config', {
+    alias: 'c',
+    describe: 'Path to config (map with urls to cinemas on kino.de)\n\nExample config.json:\n{\n\t"${CinemaName}": "https://www.kino.de/kinoprogramm/stadt/${city}/stadtteil/${district}/kino/${cinemaName}/"\n}\n'
+  })
+  .option('out', {
+    alias: 'o',
+    describe: 'Directory or path including file.json to output the results in JSON format'
+  })
+  .demandOption(['config'], 'Please provide json file with map containing URLs to cinema page(s) on kino.de')
+  .usage('Usage: $0 [-c=PATH/TO/CONFIG.json] [-o=DIR | DIR/FILENAME.JSON]')
+  .example('$0 -c path/to/config.json -o ./dist', '')
+  .help()
+  .argv;
+
+  kinoDeScraper(argv.c, argv.o);
