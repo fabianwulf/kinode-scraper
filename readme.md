@@ -13,3 +13,19 @@ Install locally
 ```
 npm i kinode-scraper
 ```
+
+## Usage
+```
+const scraper = require('kinode-scraper');
+
+(async () => {
+
+  const cinemasToScrape = {
+    'Bundesplatz Kino': 'https://www.kino.de/kinoprogramm/stadt/berlin/stadtteil/wilmersdorf/kino/bundesplatz-kino/'
+  };
+
+  const results = await scraper(cinemasToScrape, output);
+
+  console.info(results);
+})()
+```

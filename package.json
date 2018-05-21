@@ -5,7 +5,7 @@
   "bin": {
     "kinode-scraper": "./bin/kinode-scraper"
   },
-  "main": "./src/index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "jest --coverage"
   },
