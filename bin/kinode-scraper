@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const fs = require('fs');
 const kinoDeScraper = require('../lib');
+const ora = require('ora');
 
 var argv = require('yargs')
   .option('config', {
@@ -18,6 +19,14 @@ var argv = require('yargs')
   .help()
   .argv;
 
-  const cinemaMap = JSON.parse(fs.readFileSync(argv.c, 'utf-8'));
+const cinemaMap = JSON.parse(fs.readFileSync(argv.c, 'utf-8'));
+const spinner = ora(`Scraping today's movie schedules for ${Object.keys(cinemaMap).join(', ')}.`).start();
 
-  kinoDeScraper(cinemaMap, argv.o);
+(async () => {
+  try {
+    await kinoDeScraper(cinemaMap, argv.o);
+    spinner.succeed(`Data written to ${argv.o}.`);
+  } catch (err) {
+    spinner.fail(err.message);
+  }
+})()

@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "mkdirp": "^0.5.1",
+    "ora": "^2.1.0",
     "puppeteer": "^1.4.0",
     "yargs": "^11.0.0"
   },
