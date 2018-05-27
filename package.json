@@ -1,28 +1,27 @@
 {
   "name": "kinode-scraper",
-  "version": "0.2.1",
-  "description": "Get daily schedule for a list of cinemas on kino.de",
+  "version": "0.2.2",
+  "author": "Fabian Wulf <hello@fabianwulf.de>",
+  "description": "Scrape daily movie schedules for cinemas listed on kino.de by using the headless Chrome API provided by Puppeteer",
+  "main": "./lib/index.js",
   "bin": {
     "kinode-scraper": "./bin/kinode-scraper"
   },
-  "main": "./lib/index.js",
   "scripts": {
     "test": "jest"
   },
-  "author": "Fabian Wulf <mail@fabianwulf.de>",
-  "license": "MIT",
   "dependencies": {
-    "mkdirp": "^0.5.1",
-    "ora": "^2.1.0",
-    "puppeteer": "^1.4.0",
-    "yargs": "^11.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "ssh://git@github.com/fabianwulf/kinode-scraper.git"
+    "mkdirp": "0.5.1",
+    "ora": "2.1.0",
+    "puppeteer": "1.4.0",
+    "yargs": "11.0.0"
   },
   "devDependencies": {
     "jest": "^22.4.4",
     "rimraf": "^2.6.2"
-  }
+  },
+  "engines": {
+    "node": ">=8.3.0"
+  },
+  "license": "MIT"
 }

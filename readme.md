@@ -8,6 +8,9 @@ Motivation: I moved to a neighbourhood having a small number of nice independent
 
 This library can either be used by CommonJS imports within JavaScript modules to fetch and process mentioned data or by CLI command which stores the results into a JSON file somewhere on hard disk.
 
+## Dependencies
+- Node >= 8.3.0
+
 ## Install
 ---
 
