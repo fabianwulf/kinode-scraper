@@ -1,12 +1,12 @@
 # 🍿 kinode-scraper
 
-Small pet project to fetch today's movie schedules for cinemas listed on [kino.de](https://kino.de).
+Small pet project fetching today's movie schedules for cinemas listed on [kino.de](https://kino.de).
 
-Motivation: I moved to a neighbourhood has a number of small independent cinemas around, so instead of looking up schedules for every cinema manually I wanted to have a daily schedule of the cinemas close to the place I live.
+Motivation: I moved to a neighbourhood having a small number of nice independent cinemas around. So instead of looking up schedules for every cinema I wanted to have something like a daily schedule for the ones close to the place I live.
 
 🙈 Since I couldn't find any appropriate API providing the data i needed I chose to scrape it from kino.de (some may find it quite a heavy website 💅) by [Puppeteer](https://github.com/GoogleChrome/puppeteer), so it may take a while to gather all information from it - depending on the list of pages to scrape.
 
-Resulting data could either be used and processed in other JS modules (through CommonJS) or written into a JSON file on hard disk (easiest via CLI command).
+This library can either be used by CommonJS imports within JavaScript modules to fetch and process mentioned data or by CLI command which stores the results into a JSON file somewhere on hard disk.
 
 ## Install
 ---
@@ -32,7 +32,7 @@ where the config file is just a map of URLs to cinemas listed on kino.de, e.g.
 
 ```
 {
-  "Bundesplatz Kino": "https://www.kino.de/kinoprogramm/stadt/berlin/stadtteil/wilmersdorf/kino/bundesplatz-kino/",
+  "Moviemento": "https://www.kino.de/kinoprogramm/stadt/berlin/stadtteil/kreuzberg/kino/moviemento-kino-in-berlin/",
   ...
 }
 ```
@@ -44,10 +44,10 @@ const scraper = require('kinode-scraper');
 (async () => {
 
   const cinemasToScrape = {
-    'Bundesplatz Kino': 'https://www.kino.de/kinoprogramm/stadt/berlin/stadtteil/wilmersdorf/kino/bundesplatz-kino/'
+    'Moviemento': 'https://www.kino.de/kinoprogramm/stadt/berlin/stadtteil/kreuzberg/kino/moviemento-kino-in-berlin/'
   };
 
-  const results = await scraper(cinemasToScrape, output);
+  const results = await scraper(cinemasToScrape);
 
   console.info(results);
 })()
