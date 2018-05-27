@@ -55,3 +55,24 @@ const scraper = require('kinode-scraper');
   console.info(results);
 })()
 ```
+
+#### Result example:
+```
+[
+  {
+    "name": "Moviemento",
+    "url": "https://www.kino.de/kinoprogramm/stadt/berlin/stadtteil/kreuzberg/kino/moviemento-kino-in-berlin/",
+    "movies":[
+      { 
+        "title": "A Beautiful Day",
+        "url": "https://www.kino.de/film/a-beautiful-day-2017/","times": ["23:15 "]
+      },
+      {
+        "title": "Lady Bird",
+        "url": "https://www.kino.de/film/lady-bird-2017/",
+        "times": ["12:00 "]
+      }
+    ]
+  }
+]
+```

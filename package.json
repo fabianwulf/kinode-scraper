@@ -23,5 +23,9 @@
   "engines": {
     "node": ">=8.3.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/fabianwulf/kinode-scraper.git"
+  }
 }
