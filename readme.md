@@ -4,7 +4,7 @@ Small pet project fetching today's movie schedules for cinemas listed on [kino.d
 
 Motivation: I moved to a neighbourhood having a small number of nice independent cinemas around. So instead of looking up schedules for every cinema I wanted to have something like a daily schedule for the ones close to the place I live.
 
-🙈 Since I couldn't find any appropriate API providing the data i needed I chose to scrape it from kino.de (some may find it quite a heavy website 💅) by [Puppeteer](https://github.com/GoogleChrome/puppeteer), so it may take a while to gather all information from it - depending on the list of pages to scrape.
+🙈 Since I couldn't find any appropriate API providing the data i needed I chose to scrape it from kino.de by the nifty scraping lib [x-ray](https://github.com/matthewmueller/x-ray).
 
 This library can either be used by CommonJS imports within JavaScript modules to fetch and process mentioned data or by CLI command which stores the results into a JSON file somewhere on hard disk.
 
@@ -66,12 +66,12 @@ const scraper = require('kinode-scraper');
       { 
         "title": "A Beautiful Day",
         "url": "https://www.kino.de/film/a-beautiful-day-2017/",
-        "times": ["23:15 "]
+        "times": ["23:15"]
       },
       {
         "title": "Lady Bird",
         "url": "https://www.kino.de/film/lady-bird-2017/",
-        "times": ["12:00 "]
+        "times": ["12:00"]
       }
     ]
   }

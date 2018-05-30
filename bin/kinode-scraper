@@ -31,8 +31,8 @@ const spinner = ora(
 
 (async () => {
   try {
-    await writeToFile(argv.o, await kinoDeScraper(cinemaMap));
-    spinner.succeed(`Data written to ${argv.o}.`);
+    const finalPath = await writeToFile(argv.o, await kinoDeScraper(cinemaMap));
+    spinner.succeed(`Data written to ${finalPath}.`);
   } catch (err) {
     spinner.fail(err.message);
   }

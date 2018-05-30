@@ -1,8 +1,8 @@
 {
   "name": "kinode-scraper",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "author": "Fabian Wulf <hello@fabianwulf.de>",
-  "description": "Scrape daily movie schedules for cinemas listed on kino.de by using the headless Chrome API provided by Puppeteer",
+  "description": "Scrape daily movie schedules for cinemas listed on kino.de",
   "main": "./lib/index.js",
   "bin": {
     "kinode-scraper": "./bin/kinode-scraper"
@@ -13,7 +13,7 @@
   "dependencies": {
     "mkdirp": "0.5.1",
     "ora": "2.1.0",
-    "puppeteer": "1.4.0",
+    "x-ray": "2.3.2",
     "yargs": "11.0.0"
   },
   "devDependencies": {
