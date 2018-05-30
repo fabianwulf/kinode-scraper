@@ -1,32 +1,39 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const kinoDeScraper = require('../lib');
-const ora = require('ora');
+const fs = require("fs");
+const kinoDeScraper = require("../lib");
+const writeToFile = require("../lib/writetofile");
+const ora = require("ora");
 
-var argv = require('yargs')
-  .option('config', {
-    alias: 'c',
-    describe: 'Path to config (map with urls to cinemas on kino.de)\n\nExample config.json:\n{\n\t"${CinemaName}": "https://www.kino.de/kinoprogramm/stadt/${city}/stadtteil/${district}/kino/${cinemaName}/"\n}\n'
+var argv = require("yargs")
+  .option("config", {
+    alias: "c",
+    describe:
+      'Path to config (map with urls to cinemas on kino.de)\n\nExample config.json:\n{\n\t"${CinemaName}": "https://www.kino.de/kinoprogramm/stadt/${city}/stadtteil/${district}/kino/${cinemaName}/"\n}\n'
   })
-  .option('out', {
-    alias: 'o',
-    describe: 'Directory or path including file.json to output the results in JSON format'
+  .option("out", {
+    alias: "o",
+    describe:
+      "Directory or path including file.json to output the results in JSON format"
   })
-  .demandOption(['config'], 'Please provide json file with map containing URLs to cinema page(s) on kino.de.')
-  .demandOption(['out'], 'Please provide a path to write the results to.')
-  .usage('Usage: $0 [-c=PATH/TO/CONFIG.json] [-o=DIR | DIR/FILENAME.JSON]')
-  .example('$0 -c path/to/config.json -o ./dist', '')
-  .help()
-  .argv;
+  .demandOption(
+    ["config"],
+    "Please provide json file with map containing URLs to cinema page(s) on kino.de."
+  )
+  .demandOption(["out"], "Please provide a path to write the results to.")
+  .usage("Usage: $0 [-c=PATH/TO/CONFIG.json] [-o=DIR | DIR/FILENAME.JSON]")
+  .example("$0 -c path/to/config.json -o ./dist", "")
+  .help().argv;
 
-const cinemaMap = JSON.parse(fs.readFileSync(argv.c, 'utf-8'));
-const spinner = ora(`Scraping today's movie schedules for ${Object.keys(cinemaMap).join(', ')}.`).start();
+const cinemaMap = JSON.parse(fs.readFileSync(argv.c, "utf-8"));
+const spinner = ora(
+  `Scraping today's movie schedules for ${Object.keys(cinemaMap).join(", ")}.`
+).start();
 
 (async () => {
   try {
-    await kinoDeScraper(cinemaMap, argv.o);
+    await writeToFile(argv.o, await kinoDeScraper(cinemaMap));
     spinner.succeed(`Data written to ${argv.o}.`);
   } catch (err) {
     spinner.fail(err.message);
   }
-})()
+})();
