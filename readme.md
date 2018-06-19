@@ -58,22 +58,25 @@ const scraper = require('kinode-scraper');
 
 #### Result example:
 ```
-[
-  {
-    "name": "Moviemento",
-    "url": "https://www.kino.de/kinoprogramm/stadt/berlin/stadtteil/...",
-    "movies":[
-      { 
-        "title": "A Beautiful Day",
-        "url": "https://www.kino.de/film/a-beautiful-day-2017/",
-        "times": ["23:15"]
-      },
-      {
-        "title": "Lady Bird",
-        "url": "https://www.kino.de/film/lady-bird-2017/",
-        "times": ["12:00"]
-      }
-    ]
-  }
-]
+{
+  "created":"2018-6-19 21:11:30",
+  "schedule": [
+    {
+      "name": "Moviemento",
+      "url": "https://www.kino.de/kinoprogramm/stadt/berlin/stadtteil/...",
+      "movies":[
+        { 
+          "title": "A Beautiful Day",
+          "url": "https://www.kino.de/film/a-beautiful-day-2017/",
+          "times": ["23:15"]
+        },
+        {
+          "title": "Lady Bird",
+          "url": "https://www.kino.de/film/lady-bird-2017/",
+          "times": ["12:00"]
+        }
+      ]
+    }
+  ]
+}
 ```
