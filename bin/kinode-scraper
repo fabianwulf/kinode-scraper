@@ -31,7 +31,11 @@ const spinner = ora(
 
 (async () => {
   try {
-    const finalPath = await writeToFile(argv.o, await kinoDeScraper(cinemaMap));
+    const movies = await kinoDeScraper(cinemaMap);
+    const finalPath = await writeToFile(argv.o, {
+      created: new Date().toLocaleString(),
+      schedule: [...movies]
+    });
     spinner.succeed(`Data written to ${finalPath}.`);
   } catch (err) {
     spinner.fail(err.message);

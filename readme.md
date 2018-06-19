@@ -4,7 +4,7 @@ Small pet project fetching today's movie schedules for cinemas listed on [kino.d
 
 Motivation: I moved to a neighbourhood having a small number of nice independent cinemas around. So instead of looking up schedules for every cinema I wanted to have something like a daily schedule for the ones close to the place I live.
 
-🙈 Since I couldn't find any appropriate API providing the data i needed I chose to scrape it from kino.de by the nifty scraping lib [x-ray](https://github.com/matthewmueller/x-ray).
+🙈 Since I couldn't find any appropriate API providing the data i needed I chose to scrape it from kino.de by the fast and nifty scraping lib [x-ray](https://github.com/matthewmueller/x-ray).
 
 This library can either be used by CommonJS imports within JavaScript modules to fetch and process mentioned data or by CLI command which stores the results into a JSON file somewhere on hard disk.
 
