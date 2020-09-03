@@ -1,6 +1,6 @@
 {
   "name": "kinode-scraper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Fabian Wulf <hello@fabianwulf.de>",
   "description": "Scrape daily movie schedules for cinemas listed on kino.de",
   "main": "./lib/index.js",
